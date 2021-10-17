@@ -32,5 +32,14 @@ module.exports = async (topic, message) => {
 
   const w = await writer();
 
-  w.publish(topic, message)
+  w.publish(topic, message, err => {
+
+    if(err) {
+      console.error(err.message)
+    }
+
+    console.log('Message set successfully')
+
+    w.close()
+  })
 }
